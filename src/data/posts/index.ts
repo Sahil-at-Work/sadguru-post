@@ -3,11 +3,13 @@ import post2 from './post2';
 import post3 from './post3';
 import post4 from './post4';
 import post5 from './post5';
+import post6 from './post6';
+
 
 import { Post, ClassLevel, Subject } from '../../types';
 
 export const posts = [
-  post1, post2, post3, post4, post5
+  post1, post2, post3, post4, post5, post6
 ];
 
 export const getAllTopics = (): string[] => {
