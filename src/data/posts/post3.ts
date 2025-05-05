@@ -5,27 +5,27 @@ const post: Post = {
   title: 'Chemical Bonding',
   images: [
     {
-      url: 'https://github.com/user-attachments/assets/1c5f4807-8616-408d-8b80-1824515c86e0',
+      url: 'https://github.com/user-attachments/assets/f4a82480-02d4-4acf-bb0b-b90ac30d8cbd',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/2fd1fb71-e52f-4475-a578-b1fbaa7641ab',
+      url: 'https://github.com/user-attachments/assets/2cb4dd65-c181-4bed-b571-e5770c1ecaf9',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/99dc107d-f6f9-4d4f-9dcb-ecfeb63b29fd',
+      url: 'https://github.com/user-attachments/assets/46cecfe7-2fc6-4be2-adfa-03b6055f8aa9',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/121c2a15-8e40-40e4-8586-97c79c7380e4',
+      url: 'https://github.com/user-attachments/assets/5da2c232-abfa-48c1-869f-9961260aad43',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/668b893f-2454-46b6-b4be-b72b0dff4820',
+      url: 'https://github.com/user-attachments/assets/fc4b655b-6d65-491c-a731-07eec13e981b',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/b17b18ce-a886-46fc-b232-1b49e3834341',
+      url: 'https://github.com/user-attachments/assets/affc5c9d-7b7c-4b0d-b253-044f97afa052',
       caption: ''
     }
   ],
