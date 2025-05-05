@@ -29,7 +29,7 @@ const post: Post = {
       caption: ''
     }
   ],
-  caption: 'Explore the fascinating differences between mitosis and meiosis, the two types of cell division. Understand their stages and biological significance.',
+  caption: 'Gravity is a fundamental force of attraction between objects with mass. The greater the mass, the stronger the gravitational pull. It keeps our feet on the ground and planets orbiting the sun. Understanding gravity is crucial for fields like astronomy and engineering. It helps us predict the behavior of celestial bodies and design spacecraft. As we explore the universe, our understanding of gravity continues to evolve. This fundamental force shapes the cosmos we inhabit.',
   class: '10th',
   subject: 'Science',
   topics: ['Gravitation', 'Physics'],
