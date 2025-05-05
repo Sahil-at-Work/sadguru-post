@@ -1,31 +1,27 @@
 import { Post } from '../../types';
 
 const post: Post = {
-  id: '2',
-  title: 'Apple and Orbit',
+  id: '4',
+  title: 'Kepler Laws',
   images: [
     {
-      url: 'https://github.com/user-attachments/assets/1c5f4807-8616-408d-8b80-1824515c86e0',
+      url: 'https://github.com/user-attachments/assets/2f170042-fefa-4876-a084-3d9f53b489bf',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/2fd1fb71-e52f-4475-a578-b1fbaa7641ab',
+      url: 'https://github.com/user-attachments/assets/fc53d972-6492-4649-b2d3-451500931859',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/99dc107d-f6f9-4d4f-9dcb-ecfeb63b29fd',
+      url: 'https://github.com/user-attachments/assets/9ce85781-a58f-4be8-a7c4-93e1795650c8',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/121c2a15-8e40-40e4-8586-97c79c7380e4',
+      url: 'https://github.com/user-attachments/assets/831aecb0-53d6-4d58-a50a-5c0f911db8af',
       caption: ''
     },
     {
-      url: 'https://github.com/user-attachments/assets/668b893f-2454-46b6-b4be-b72b0dff4820',
-      caption: ''
-    },
-    {
-      url: 'https://github.com/user-attachments/assets/b17b18ce-a886-46fc-b232-1b49e3834341',
+      url: 'https://github.com/user-attachments/assets/fded1416-322a-4d0a-a0e9-03d602bc67fb',
       caption: ''
     }
   ],

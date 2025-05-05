@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '3',
-  title: 'Chemical Bonding',
+  title: 'ThePeriodic Table',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/f4a82480-02d4-4acf-bb0b-b90ac30d8cbd',

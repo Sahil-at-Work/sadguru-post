@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '4',
-  title: 'Gravitation',
+  title: 'Newton and Circular Motion',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/0e465fc8-721d-4018-b1b9-15610cfb223f',

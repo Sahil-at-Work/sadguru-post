@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '1',
-  title: 'Gravitation',
+  title: 'The Apple Secret',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/effabc04-9440-4b42-a6e6-43560936b9a6',
