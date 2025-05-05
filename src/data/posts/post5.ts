@@ -1,7 +1,7 @@
 import { Post } from '../../types';
 
 const post: Post = {
-  id: '4',
+  id: '5',
   title: 'Kepler Laws',
   images: [
     {
