@@ -35,7 +35,7 @@ const post: Post = {
   topics: ['PeriodicTable', 'Chemistry'],
   createdAt: '2025-05-28T14:30:00Z',
   likes: 94,
-  bookmarked: true
+  bookmarked: false
 };
 
 export default post;

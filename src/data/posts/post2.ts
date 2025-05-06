@@ -35,7 +35,7 @@ const post: Post = {
   topics: ['Gravitation', 'Physics'],
   createdAt: '2025-05-28T14:30:00Z',
   likes: 132,
-  bookmarked: true
+  bookmarked: false
 };
 
 export default post;
