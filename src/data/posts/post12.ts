@@ -49,7 +49,7 @@ const post: Post = {
   class: '11th',
   subject: 'Chemistry',
   topics: ['Basic Concepts of Chemistry', 'Chemistry'],
-  createdAt: '2025-05-28T14:30:00Z',
+  createdAt: '2025-05-06T10:00:00Z',
   likes: 152,
   bookmarked: true
 };

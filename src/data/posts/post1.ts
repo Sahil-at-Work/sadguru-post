@@ -33,7 +33,7 @@ const post: Post = {
   class: '10th',
   subject: 'Science',
   topics: ['Gravitation', 'Physics', 'Science'],
-  createdAt: '2025-06-01T10:00:00Z',
+  createdAt: '2025-05-06T10:00:00Z',
   likes: 156,
   bookmarked: false
 };
