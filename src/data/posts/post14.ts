@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '14',
-  title: 'Basic Concepts of Chemistry',
+  title: 'Unveiling Rules',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/9253d578-1a02-48e3-a30a-bd09db2e97f8',
@@ -38,7 +38,7 @@ const post: Post = {
     }
   ],
 
-  caption: 'Dive into the fascinating world of chemistry with our latest 5-slide carousel! 🧪 From understanding the very nature of matter and its transformations to exploring the crucial role chemistry plays in our daily lives, this post breaks down the fundamental concepts. We will journey from ancient alchemy to modern science, classify matter into pure substances and mixtures, explore the different states of matter and their properties, and highlight the vital role of quantitative measurement in this central science. Swipe through to build your foundational knowledge in chemistry! #chemistry #science #education #matter #pureSubstances #mixtures #statesOfMatter #physicalProperties #chemicalProperties #measurement #learning #stem #instascience',
+  caption: 'Unlocking the fundamental rules of chemistry! 🧪✨ This post dives into the fascinating Laws of Chemical Combination, from Lavoisier mass conservation to Proust definite proportions and Dalton multiple proportions. We then explore Gay Lussac gas volume law and Avogadro crucial link between gas volumes and molecules. Finally, we touch upon Dalton Atomic Theory, the cornerstone that elegantly explains these macroscopic laws at a microscopic level. Understanding these principles is key to grasping how elements interact and form the world around us! #ChemistryBasics #ChemicalLaws #ScienceEducation #AtomsAndMolecules #FoundationOfChemistry',
   class: '11th',
   subject: 'Chemistry',
   topics: ['Basic Concepts of Chemistry', 'Chemistry'],

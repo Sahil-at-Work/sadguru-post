@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '13',
-  title: 'Basic Concepts of Chemistry',
+  title: 'SI Units',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/9802e052-2130-4961-8e56-ecf53c4cb61c',
@@ -42,7 +42,7 @@ const post: Post = {
     }
   ],
 
-  caption: 'Dive into the fascinating world of chemistry with our latest 5-slide carousel! 🧪 From understanding the very nature of matter and its transformations to exploring the crucial role chemistry plays in our daily lives, this post breaks down the fundamental concepts. We will journey from ancient alchemy to modern science, classify matter into pure substances and mixtures, explore the different states of matter and their properties, and highlight the vital role of quantitative measurement in this central science. Swipe through to build your foundational knowledge in chemistry! #chemistry #science #education #matter #pureSubstances #mixtures #statesOfMatter #physicalProperties #chemicalProperties #measurement #learning #stem #instascience',
+  caption: 'Unlocking the language of chemistry starts with understanding Units and Measurements! 📏🌡️ From the fundamental SI units that provide a universal standard to exploring key physical properties like mass, weight, length, volume, density, and temperature, these concepts are the bedrock of quantitative chemistry. Join us as we delve into how we precisely describe and characterize the matter around us, laying the groundwork for deeper scientific exploration. Stay curious and keep measuring! #ChemistryBasics #UnitsAndMeasurements #SIUnits #PhysicalProperties #ScienceEducation #LearnChemistry #MeasurementInScience #Density #Temperature #Volume #Length #Mass #FoundationOfChemistry #ScienceIsCool',
   class: '11th',
   subject: 'Chemistry',
   topics: ['Basic Concepts of Chemistry', 'Chemistry'],

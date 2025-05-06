@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '12',
-  title: 'Basic Concepts of Chemistry',
+  title: 'Realm of Atoms and Moles',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/3bca3f15-44cb-4388-9ac3-7300e422464a',

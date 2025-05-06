@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '14',
-  title: 'Basic Concepts of Chemistry',
+  title: 'Atoms and Moles',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/b751ea2f-02b6-46a3-8dd2-d97f03874dfc',
@@ -26,7 +26,7 @@ const post: Post = {
     }
   ],
 
-  caption: 'Dive into the fascinating world of chemistry with our latest 5-slide carousel! 🧪 From understanding the very nature of matter and its transformations to exploring the crucial role chemistry plays in our daily lives, this post breaks down the fundamental concepts. We will journey from ancient alchemy to modern science, classify matter into pure substances and mixtures, explore the different states of matter and their properties, and highlight the vital role of quantitative measurement in this central science. Swipe through to build your foundational knowledge in chemistry! #chemistry #science #education #matter #pureSubstances #mixtures #statesOfMatter #physicalProperties #chemicalProperties #measurement #learning #stem #instascience',
+  caption: 'Dive into the fundamental building blocks of chemistry with us! ⚛️ From the incredibly tiny world of atomic mass, measured in unified mass units (u), to understanding how the average atomic mass accounts for natures isotopic variations, we are exploring the unseen. Then, we scale up to the mole  chemistry ingenious way to count the vast numbers of atoms and molecules we work with. Join us as we unravel these essential concepts that bridge the microscopic and macroscopic realms of matter. #ChemistryBasics #AtomicMass #MoleConcept #AvogadrosNumber #ScienceEducation #ChemExplained #UnderstandingMatter #MicroscopicWorld #MacroscopicScale #ScienceIsCool',
   class: '11th',
   subject: 'Chemistry',
   topics: ['Basic Concepts of Chemistry', 'Chemistry'],
