@@ -75,11 +75,11 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ isOpen, onClose }) => {
 
   return (
     <div 
-      className={`fixed inset-y-0 left-0 z-30 w-72 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out ${
+      className={`fixed inset-y-0 left-0 z-50 w-72 bg-white dark:bg-gray-900 shadow-lg transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       } md:translate-x-0 md:static md:w-64`}
     >
-      <div className="p-4 h-full overflow-y-auto">
+      <div className="p-4 h-full overflow-y-auto pt-20 md:pt-4">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center">
             <Filter className="h-5 w-5 mr-2" />
