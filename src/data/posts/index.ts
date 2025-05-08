@@ -13,12 +13,18 @@ import post12 from './post12';
 import post13 from './post13';
 import post14 from './post14';
 import post15 from './post15';
+import post16 from './post16';
+import post17 from './post17';
+import post18 from './post18';
+import post19 from './post19';
 
 
 import { Post, ClassLevel, Subject } from '../../types';
 
 export const posts = [
-  post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15
+  post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, 
+  post16, post17, post18, post19
+
 ];
 
 export const getAllTopics = (): string[] => {
