@@ -2,7 +2,7 @@ import { Post } from '../../types';
 
 const post: Post = {
   id: '25',
-  title: 'Colors Reveal',
+  title: 'Unveiling Vector- 2',
   images: [
     {
       url: 'https://github.com/user-attachments/assets/4cb13114-66da-45cd-a298-794f2ba52ac4',
