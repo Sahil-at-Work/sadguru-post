@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Book, Moon, Sun, Search, Menu, X } from 'lucide-react';
+import { Book, Moon, Sun, Search, Menu, X, GraduationCap } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { usePosts } from '../context/PostsContext';
 
@@ -11,7 +11,6 @@ const Header: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
-  // Handle scroll effect
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -50,6 +49,10 @@ const Header: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-8">
             <Link to="/" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
               Home
+            </Link>
+            <Link to="/quizzes" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 flex items-center space-x-1">
+              <GraduationCap className="h-5 w-5" />
+              <span>Quizzes</span>
             </Link>
             <Link to="/bookmarks" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
               Bookmarks
@@ -103,6 +106,14 @@ const Header: React.FC = () => {
               onClick={() => setMobileMenuOpen(false)}
             >
               Home
+            </Link>
+            <Link 
+              to="/quizzes" 
+              className="block py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center space-x-2"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <GraduationCap className="h-5 w-5" />
+              <span>Quizzes</span>
             </Link>
             <Link 
               to="/bookmarks" 

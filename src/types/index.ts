@@ -9,11 +9,54 @@ export interface Post {
   createdAt: string;
   likes: number;
   bookmarked: boolean;
+  quiz?: Quiz;
 }
 
 export interface PostImage {
   url: string;
   caption: string;
+}
+
+export interface Quiz {
+  id: string;
+  title: string;
+  subject: Subject;
+  timeLimit: number;
+  questions: Question[];
+}
+
+export interface Question {
+  id: string;
+  text: string;
+  options: string[];
+  correctAnswer: number;
+  explanation: string;
+}
+
+export interface QuizResult {
+  quizId: string;
+  score: number;
+  totalQuestions: number;
+  timeSpent: number;
+  answers: number[];
+  completedAt: string;
+}
+
+export interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  unlockedAt?: string;
+}
+
+export interface StudySession {
+  id: string;
+  startTime: string;
+  endTime?: string;
+  duration: number;
+  subject?: Subject;
+  topic?: string;
 }
 
 export type ClassLevel = '8th' | '9th' | '10th' | '11th' | '12th';
@@ -35,4 +78,12 @@ export interface FilterState {
   subjects: Subject[];
   topics: string[];
   searchQuery: string;
+}
+
+export interface UserProgress {
+  completedPosts: string[];
+  quizScores: Record<string, number>;
+  achievements: Achievement[];
+  studyTime: number;
+  lastStudySession?: StudySession;
 }
