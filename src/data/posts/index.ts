@@ -24,6 +24,10 @@ import post23 from './post23';
 import post24 from './post24';
 import post25 from './post25';
 import post26 from './post26';
+import post27 from './post27';
+import post28 from './post28';
+import post29 from './post29';
+import post30 from './post30';
 
 
 import { Post, ClassLevel, Subject } from '../../types';
@@ -32,7 +36,7 @@ export const posts = [
   post1, post2, post3, post4, post5, post6, post7, post8, post9, post10, post11, post12, post13, post14, post15, 
   post16, post17, post18, post19,
   post20, post21, post22, post23,
-  post24, post25, post26
+  post24, post25, post26, post27, post28, post29, post30
 
 ];
 
