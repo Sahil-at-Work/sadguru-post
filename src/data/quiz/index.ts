@@ -1,4 +1,4 @@
-import { Quiz } from '../../types';
+import { Quiz, ClassLevel, Subject } from '../../types';
 
 export const quizzes: Quiz[] = [
   {
@@ -9,7 +9,9 @@ export const quizzes: Quiz[] = [
     externalUrl: 'https://www.khanacademy.org/math/quiz',
     imageUrl: 'https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg',
     duration: 60,
-    questionCount: 25
+    questionCount: 25,
+    classLevel: '10th',
+    topics: ['Algebra', 'Geometry', 'Trigonometry']
   },
   {
     id: 'physics-101',
@@ -19,7 +21,9 @@ export const quizzes: Quiz[] = [
     externalUrl: 'https://www.physicsclassroom.com/Physics-Interactives',
     imageUrl: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg',
     duration: 45,
-    questionCount: 20
+    questionCount: 20,
+    classLevel: '11th',
+    topics: ['Mechanics', 'Waves', 'Energy']
   },
   {
     id: 'chemistry-101',
@@ -29,7 +33,9 @@ export const quizzes: Quiz[] = [
     externalUrl: 'https://www.chemtutor.com/quiz.htm',
     imageUrl: 'https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg',
     duration: 30,
-    questionCount: 15
+    questionCount: 15,
+    classLevel: '9th',
+    topics: ['Chemical Bonding', 'Periodic Table', 'Molecular Structure']
   },
   {
     id: 'biology-101',
@@ -39,10 +45,28 @@ export const quizzes: Quiz[] = [
     externalUrl: 'https://www.biologycorner.com/quizzes',
     imageUrl: 'https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg',
     duration: 40,
-    questionCount: 30
+    questionCount: 30,
+    classLevel: '12th',
+    topics: ['Cell Biology', 'Genetics', 'Human Anatomy']
   }
 ];
 
 export const getQuizById = (id: string): Quiz | undefined => {
   return quizzes.find(quiz => quiz.id === id);
+};
+
+export const getAllSubjects = (): Subject[] => {
+  return Array.from(new Set(quizzes.map(quiz => quiz.subject)));
+};
+
+export const getAllClassLevels = (): ClassLevel[] => {
+  return Array.from(new Set(quizzes.map(quiz => quiz.classLevel)));
+};
+
+export const getAllTopics = (): string[] => {
+  const topicsSet = new Set<string>();
+  quizzes.forEach(quiz => {
+    quiz.topics.forEach(topic => topicsSet.add(topic));
+  });
+  return Array.from(topicsSet).sort();
 };

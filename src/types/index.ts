@@ -26,6 +26,8 @@ export interface Quiz {
   imageUrl: string;
   duration: number;
   questionCount: number;
+  classLevel: ClassLevel;
+  topics: string[];
 }
 
 export type ClassLevel = '8th' | '9th' | '10th' | '11th' | '12th';
