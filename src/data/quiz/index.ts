@@ -36,18 +36,6 @@ export const quizzes: Quiz[] = [
     questionCount: 15,
     classLevel: '9th',
     topics: ['Chemical Bonding', 'Periodic Table', 'Molecular Structure']
-  },
-  {
-    id: 'biology-101',
-    title: 'Biology Basics',
-    subject: 'Biology',
-    description: 'Test your knowledge of cell biology, genetics, and human anatomy.',
-    externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScPZBBO-55t-_lZueJ9n0b2-eYtEwZgDaRUj63rUQ318qesMw/viewform?usp=header',
-    imageUrl: 'https://images.pexels.com/photos/3825527/pexels-photo-3825527.jpeg',
-    duration: 40,
-    questionCount: 30,
-    classLevel: '12th',
-    topics: ['Cell Biology', 'Genetics', 'Human Anatomy']
   }
 ];
 
