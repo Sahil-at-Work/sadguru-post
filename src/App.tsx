@@ -9,7 +9,6 @@ import BookmarksPage from './pages/BookmarksPage';
 import PostDetailPage from './pages/PostDetailPage';
 import AboutPage from './pages/AboutPage';
 import QuizzesPage from './pages/QuizzesPage';
-import QuizPage from './pages/QuizPage';
 
 function App() {
   return (
@@ -25,7 +24,6 @@ function App() {
                 <Route path="/post/:id" element={<PostDetailPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/quizzes" element={<QuizzesPage />} />
-                <Route path="/quiz/:id" element={<QuizPage />} />
               </Routes>
             </main>
             <Footer />
