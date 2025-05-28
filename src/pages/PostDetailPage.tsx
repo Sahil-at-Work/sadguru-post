@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bookmark, BookmarkCheck, Heart, Share2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { usePosts } from '../context/PostsContext';
@@ -9,6 +9,7 @@ const PostDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const { getPostById, bookmarkPost, getRelatedPosts } = usePosts();
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
   
   const post = getPostById(id || '');
   
@@ -16,9 +17,21 @@ const PostDetailPage: React.FC = () => {
     if (!post) {
       navigate('/');
     }
-    // Scroll to top when post changes
     window.scrollTo(0, 0);
   }, [post, navigate]);
+
+  const handleKeyNavigation = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'ArrowLeft') {
+      handlePrevImage();
+    } else if (e.key === 'ArrowRight') {
+      handleNextImage();
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyNavigation);
+    return () => window.removeEventListener('keydown', handleKeyNavigation);
+  }, [handleKeyNavigation]);
   
   if (!post) {
     return null;
@@ -57,6 +70,33 @@ const PostDetailPage: React.FC = () => {
     setCurrentImageIndex(prev => 
       prev === post.images.length - 1 ? 0 : prev + 1
     );
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStart === null) return;
+
+    const currentTouch = e.touches[0].clientX;
+    const diff = touchStart - currentTouch;
+
+    // Threshold of 50px for swipe
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        // Swipe left
+        handleNextImage();
+      } else {
+        // Swipe right
+        handlePrevImage();
+      }
+      setTouchStart(null);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setTouchStart(null);
   };
   
   return (
@@ -119,7 +159,11 @@ const PostDetailPage: React.FC = () => {
             <img 
               src={post.images[currentImageIndex].url} 
               alt={post.images[currentImageIndex].caption}
-              className="w-full max-h-[600px] object-contain rounded-lg"
+              className="w-full max-h-[600px] object-contain rounded-lg cursor-grab active:cursor-grabbing"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              draggable={false}
             />
             
             {/* Image Navigation */}
@@ -178,6 +222,7 @@ const PostDetailPage: React.FC = () => {
                   src={image.url} 
                   alt={image.caption}
                   className="w-20 h-20 object-cover"
+                  draggable={false}
                 />
               </button>
             ))}
