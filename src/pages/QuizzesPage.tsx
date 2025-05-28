@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { GraduationCap, Clock, Award, ExternalLink, Filter, X } from 'lucide-react';
+import { GraduationCap, Clock, Award, ExternalLink, Filter, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { quizzes, getAllSubjects, getAllClassLevels, getAllTopics } from '../data/quiz';
 import { ClassLevel, Subject, Quiz } from '../types';
 
@@ -8,6 +8,7 @@ const QuizzesPage: React.FC = () => {
   const [selectedClasses, setSelectedClasses] = useState<ClassLevel[]>([]);
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
 
   // Only get subjects and topics that are actually used in quizzes
   const subjects = getAllSubjects();
@@ -49,115 +50,132 @@ const QuizzesPage: React.FC = () => {
             </p>
           </div>
 
+          {/* Filters Toggle Button */}
+          <button
+            onClick={() => setShowFilters(!showFilters)}
+            className="w-full bg-white dark:bg-gray-800 rounded-xl shadow-md p-4 mb-4 flex items-center justify-between"
+          >
+            <div className="flex items-center space-x-2">
+              <Filter className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
+              <span className="font-medium text-gray-900 dark:text-white">
+                Filters {activeFilterCount > 0 && `(${activeFilterCount})`}
+              </span>
+            </div>
+            {showFilters ? (
+              <ChevronUp className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+            ) : (
+              <ChevronDown className="h-5 w-5 text-gray-500 dark:text-gray-400" />
+            )}
+          </button>
+
           {/* Filters Section */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center space-x-2">
-                <Filter className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
-                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filters</h2>
+          {showFilters && (
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Filter Options</h2>
+                {activeFilterCount > 0 && (
+                  <button
+                    onClick={clearFilters}
+                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
+                  >
+                    Clear all filters
+                  </button>
+                )}
               </div>
-              {activeFilterCount > 0 && (
-                <button
-                  onClick={clearFilters}
-                  className="text-sm text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400"
-                >
-                  Clear all filters
-                </button>
-              )}
-            </div>
 
-            {/* Search */}
-            <div className="mb-6">
-              <input
-                type="text"
-                placeholder="Search quizzes..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              />
-            </div>
+              {/* Search */}
+              <div className="mb-6">
+                <input
+                  type="text"
+                  placeholder="Search quizzes..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                />
+              </div>
 
-            {/* Filter Groups */}
-            <div className="space-y-6">
-              {/* Subjects */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subjects</h3>
-                <div className="flex flex-wrap gap-2">
-                  {subjects.map(subject => (
-                    <button
-                      key={subject}
-                      onClick={() => {
-                        setSelectedSubjects(prev =>
-                          prev.includes(subject)
-                            ? prev.filter(s => s !== subject)
-                            : [...prev, subject]
-                        );
-                      }}
-                      className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                        selectedSubjects.includes(subject)
-                          ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                      }`}
-                    >
-                      {subject}
-                    </button>
-                  ))}
+              {/* Filter Groups */}
+              <div className="space-y-6">
+                {/* Subjects */}
+                <div>
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Subjects</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {subjects.map(subject => (
+                      <button
+                        key={subject}
+                        onClick={() => {
+                          setSelectedSubjects(prev =>
+                            prev.includes(subject)
+                              ? prev.filter(s => s !== subject)
+                              : [...prev, subject]
+                          );
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                          selectedSubjects.includes(subject)
+                            ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {subject}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Class Levels */}
+                <div>
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Class Level</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {classLevels.map(level => (
+                      <button
+                        key={level}
+                        onClick={() => {
+                          setSelectedClasses(prev =>
+                            prev.includes(level)
+                              ? prev.filter(c => c !== level)
+                              : [...prev, level]
+                          );
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                          selectedClasses.includes(level)
+                            ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {level} Standard
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Topics */}
+                <div>
+                  <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Topics</h3>
+                  <div className="flex flex-wrap gap-2">
+                    {topics.map(topic => (
+                      <button
+                        key={topic}
+                        onClick={() => {
+                          setSelectedTopics(prev =>
+                            prev.includes(topic)
+                              ? prev.filter(t => t !== topic)
+                              : [...prev, topic]
+                          );
+                        }}
+                        className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
+                          selectedTopics.includes(topic)
+                            ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                        }`}
+                      >
+                        {topic}
+                      </button>
+                    ))}
+                  </div>
                 </div>
               </div>
-
-              {/* Class Levels */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Class Level</h3>
-                <div className="flex flex-wrap gap-2">
-                  {classLevels.map(level => (
-                    <button
-                      key={level}
-                      onClick={() => {
-                        setSelectedClasses(prev =>
-                          prev.includes(level)
-                            ? prev.filter(c => c !== level)
-                            : [...prev, level]
-                        );
-                      }}
-                      className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                        selectedClasses.includes(level)
-                          ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                      }`}
-                    >
-                      {level} Standard
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Topics */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Topics</h3>
-                <div className="flex flex-wrap gap-2">
-                  {topics.map(topic => (
-                    <button
-                      key={topic}
-                      onClick={() => {
-                        setSelectedTopics(prev =>
-                          prev.includes(topic)
-                            ? prev.filter(t => t !== topic)
-                            : [...prev, topic]
-                        );
-                      }}
-                      className={`px-3 py-1.5 rounded-full text-sm transition-colors ${
-                        selectedTopics.includes(topic)
-                          ? 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/50 dark:text-indigo-300'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-                      }`}
-                    >
-                      {topic}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
-          </div>
+          )}
 
           {/* Active Filters */}
           {activeFilterCount > 0 && (
