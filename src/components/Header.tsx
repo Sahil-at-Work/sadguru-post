@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Book, Moon, Sun, Search, Menu, X, GraduationCap } from 'lucide-react';
+import { Book, Moon, Sun, Search, Menu, X, GraduationCap, Home, BookmarkIcon, InfoIcon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { usePosts } from '../context/PostsContext';
 
@@ -47,18 +47,21 @@ const Header: React.FC = () => {
           
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link to="/" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
-              Home
+            <Link to="/" className="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+              <Home className="h-5 w-5" />
+              <span>Home</span>
             </Link>
-            <Link to="/quizzes" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400 flex items-center space-x-1">
+            <Link to="/quizzes" className="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
               <GraduationCap className="h-5 w-5" />
               <span>Quizzes</span>
             </Link>
-            <Link to="/bookmarks" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
-              Bookmarks
+            <Link to="/bookmarks" className="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+              <BookmarkIcon className="h-5 w-5" />
+              <span>Bookmarks</span>
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
-              About
+            <Link to="/about" className="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 dark:text-gray-300 dark:hover:text-indigo-400">
+              <InfoIcon className="h-5 w-5" />
+              <span>About</span>
             </Link>
           </nav>
           
@@ -102,14 +105,15 @@ const Header: React.FC = () => {
           <div className="px-4 pt-2 pb-4 space-y-4">
             <Link 
               to="/" 
-              className="block py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+              className="flex items-center space-x-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Home
+              <Home className="h-5 w-5" />
+              <span>Home</span>
             </Link>
             <Link 
               to="/quizzes" 
-              className="block py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 flex items-center space-x-2"
+              className="flex items-center space-x-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
               onClick={() => setMobileMenuOpen(false)}
             >
               <GraduationCap className="h-5 w-5" />
@@ -117,17 +121,19 @@ const Header: React.FC = () => {
             </Link>
             <Link 
               to="/bookmarks" 
-              className="block py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+              className="flex items-center space-x-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
               onClick={() => setMobileMenuOpen(false)}
             >
-              Bookmarks
+              <BookmarkIcon className="h-5 w-5" />
+              <span>Bookmarks</span>
             </Link>
             <Link 
               to="/about" 
-              className="block py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
+              className="flex items-center space-x-2 py-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
               onClick={() => setMobileMenuOpen(false)}
             >
-              About
+              <InfoIcon className="h-5 w-5" />
+              <span>About</span>
             </Link>
             
             {/* Mobile Search */}
