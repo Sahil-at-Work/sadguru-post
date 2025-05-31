@@ -9,6 +9,7 @@ import BookmarksPage from './pages/BookmarksPage';
 import PostDetailPage from './pages/PostDetailPage';
 import AboutPage from './pages/AboutPage';
 import QuizzesPage from './pages/QuizzesPage';
+import LearnPage from './pages/LearnPage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/post/:id" element={<PostDetailPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/quizzes" element={<QuizzesPage />} />
+                <Route path="/learn" element={<LearnPage />} />
               </Routes>
             </main>
             <Footer />
@@ -34,4 +36,4 @@ function App() {
   );
 }
 
-export default App;
+export default App

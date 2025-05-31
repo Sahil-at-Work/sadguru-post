@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
               <Book className="h-6 w-6 text-indigo-600 dark:text-indigo-400" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">EduBlog</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">Gurukul</span>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
               Sharing educational content to help students excel in their academic journey.
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
               <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                 <Github className="h-5 w-5" />
               </a>
-              <a href="mailto:contact@edublog.com" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
+              <a href="mailto:contact@gurukul.com" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400">
                 <Mail className="h-5 w-5" />
               </a>
             </div>
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
         
         <div className="border-t border-gray-200 dark:border-gray-800 mt-8 pt-6 text-center">
           <p className="text-gray-600 dark:text-gray-400 text-sm">
-            © {new Date().getFullYear()} EduBlog. All rights reserved.
+            © {new Date().getFullYear()} Gurukul powered by Sadguru Science Classes. All rights reserved.
           </p>
         </div>
       </div>
