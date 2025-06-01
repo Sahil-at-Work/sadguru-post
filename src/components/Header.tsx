@@ -52,7 +52,7 @@ const Header: React.FC = () => {
           <Link to="/" className="flex items-center space-x-2">
             <Book className={`h-6 w-6 ${isHomePage && !isScrolled ? 'text-white' : 'text-indigo-600 dark:text-indigo-400'}`} />
             <span className={`text-xl font-bold ${isHomePage && !isScrolled ? 'text-white' : 'text-gray-900 dark:text-white'}`}>
-              Gurukul
+              Vaidnyanik
             </span>
           </Link>
           

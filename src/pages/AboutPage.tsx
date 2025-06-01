@@ -9,7 +9,7 @@ const AboutPage: React.FC = () => {
           <div className="text-center mb-12">
             <Book className="h-16 w-16 text-indigo-600 dark:text-indigo-400 mx-auto mb-4" />
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              About Gurukul
+              About Vaidnyanik
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400">
               Empowering students through engaging educational content
@@ -22,7 +22,7 @@ const AboutPage: React.FC = () => {
                 Our Mission
               </h2>
               <p className="text-gray-700 dark:text-gray-300 mb-6">
-                Gurukul was created with a simple yet powerful mission: to make educational 
+                Vaidnyanik was created with a simple yet powerful mission: to make educational 
                 content accessible, engaging, and easy to navigate for students from 8th to 12th standard.
                 We believe that learning becomes more effective when information is presented in a 
                 visually appealing and well-organized manner.
@@ -134,7 +134,7 @@ const AboutPage: React.FC = () => {
                       <Star className="h-5 w-5 text-amber-400" />
                     </div>
                     <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      "Gurukul has completely transformed my learning experience. The interactive content 
+                      "Vaidnyanik has completely transformed my learning experience. The interactive content 
                       and detailed explanations make complex topics easy to understand. I've seen a significant 
                       improvement in my grades since I started using the platform."
                     </p>
@@ -165,7 +165,7 @@ const AboutPage: React.FC = () => {
                       <Star className="h-5 w-5 text-amber-400" />
                     </div>
                     <p className="text-gray-600 dark:text-gray-300 mb-4">
-                      "As an educator, I find Gurukul to be an invaluable teaching resource. The platform's 
+                      "As an educator, I find Vaidnyanik to be an invaluable teaching resource. The platform's 
                       structured approach to content delivery and the quality of educational materials have 
                       made my lessons more effective and engaging for students."
                     </p>
@@ -197,7 +197,7 @@ const AboutPage: React.FC = () => {
                     </div>
                     <p className="text-gray-600 dark:text-gray-300 mb-4">
                       "I've seen a remarkable improvement in my daughter's academic performance since she 
-                      started using Gurukul. The platform's comprehensive coverage of subjects and 
+                      started using Vaidnyanik. The platform's comprehensive coverage of subjects and 
                       interactive learning approach has helped her develop a deeper understanding of concepts."
                     </p>
                     <div>
@@ -216,10 +216,10 @@ const AboutPage: React.FC = () => {
             </h2>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
               Whether you're studying for exams or looking to deepen your understanding of a subject,
-              Gurukul is here to support your educational journey.
+              Vaidnyanik is here to support your educational journey.
             </p>
             <a
-              href="mailto:contact@gurukul.com"
+              href="mailto:contact@vaidnyanik.com"
               className="inline-flex items-center px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition-colors"
             >
               Contact Us

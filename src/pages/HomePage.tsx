@@ -1,45 +1,70 @@
 import React, { useState } from 'react';
 import FilterSidebar from '../components/FilterSidebar';
-import PostCard from '../components/PostCard';
+import PostGrid from '../components/PostGrid';
 import TagCloud from '../components/TagCloud';
+import PostCard from '../components/PostCard';
 import { usePosts } from '../context/PostsContext';
-import { Menu, GraduationCap, Users, Award, Target, BookOpen, Phone, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { Menu, GraduationCap, Users, Award, Target, BookOpen, Phone, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const { posts } = usePosts();
+  const [currentSlide, setCurrentSlide] = useState(0);
   
   // Get top 3 posts by likes
   const topPosts = [...posts]
     .sort((a, b) => b.likes - a.likes)
     .slice(0, 3);
 
-  const topPerformers = [
+  const toppers = [
     {
-      name: "Aarav Sharma",
-      school: "St. Xavier's High School",
-      year: "2023",
-      achievement: "AIR 34 in JEE Advanced",
-      score: "98.8%",
-      image: "https://images.pexels.com/photos/1438081/pexels-photo-1438081.jpeg"
+      name: "Ms. Sara Jadhav",
+      percentage: "98.20%",
+      school: "Vidyadeep",
+      rank: 1,
+      image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg"
     },
     {
-      name: "Priya Patel",
-      school: "Delhi Public School",
-      year: "2023",
-      achievement: "AIR 56 in NEET",
-      score: "97.6%",
-      image: "https://images.pexels.com/photos/3785424/pexels-photo-3785424.jpeg"
+      name: "Mst. Madhuranjan Mishra",
+      percentage: "96.40%",
+      school: "B.V.Thakur",
+      rank: 2,
+      image: "https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg"
     },
     {
-      name: "Rahul Singh",
-      school: "Ryan International School",
-      year: "2022",
-      achievement: "International Physics Olympiad Silver Medalist",
-      score: "96.4%",
-      image: "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
+      name: "Ms. Aarya Kherade",
+      percentage: "95.40%",
+      school: "St. Peter's",
+      rank: 3,
+      image: "https://images.pexels.com/photos/3785083/pexels-photo-3785083.jpeg"
     }
   ];
+
+  const sscToppers = [
+    { name: "Ms. Sara Jadhav", percentage: "98.20%", school: "Vidyadeep" },
+    { name: "Mst. Madhuranjan Mishra", percentage: "96.40%", school: "B.V.Thakur" },
+    { name: "Ms. Aarya Kherade", percentage: "95.40%", school: "St. Peter's" },
+    { name: "Mst. Dakshal Marathe", percentage: "93.80%", school: "St. Peter's" },
+    { name: "Ms. Aditi Jadhav", percentage: "93.40%", school: "St. Peter's" },
+    { name: "Mst. Kushal Rane", percentage: "92.40%", school: "St. Peter's" },
+    { name: "Mst. Arbaz Mohammad", percentage: "91.20%", school: "St. Mary" },
+    { name: "Ms. Varshini Mogaveera", percentage: "91.20%", school: "St. Peter's" }
+  ];
+
+  const classPerformance = [
+    { range: "Above 90%", count: 8 },
+    { range: "80% to 90%", count: 21 },
+    { range: "70% to 80%", count: 19 },
+    { range: "60% to 70%", count: 15 }
+  ];
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === toppers.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? toppers.length - 1 : prev - 1));
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -191,44 +216,147 @@ const HomePage: React.FC = () => {
       {/* Results Section */}
       <div className="py-16 bg-white dark:bg-gray-800">
         <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Our Results
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Our students' achievements are a testament to our teaching methodology and their dedication. Here are some of our recent top performers.
-            </p>
-          </div>
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                SSC Result March 2024-25 - Our Toppers
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Our students' achievements reflect our commitment to excellence in education
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {topPerformers.map((performer, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-xl overflow-hidden">
-                <img
-                  src={performer.image}
-                  alt={performer.name}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {performer.name}
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-2">
-                    {performer.school}
-                  </p>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      Year: {performer.year}
-                    </span>
-                    <span className="text-lg font-semibold text-indigo-600 dark:text-indigo-400">
-                      {performer.score}
-                    </span>
+            {/* Top 3 Toppers Slider */}
+            <div className="mb-12 relative max-w-xl mx-auto">
+              <div className="overflow-hidden rounded-xl">
+                <div className="relative aspect-square">
+                  <div className="absolute inset-0 flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+                    {toppers.map((topper, index) => (
+                      <div key={index} className="min-w-full">
+                        <div className="relative h-full">
+                          <img 
+                            src={topper.image} 
+                            alt={topper.name}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+                          <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <h3 className="text-2xl font-bold mb-2">{topper.name}</h3>
+                                <p className="text-lg opacity-90">{topper.school}</p>
+                              </div>
+                              <div className="text-right">
+                                <div className="text-3xl font-bold text-indigo-400">{topper.percentage}</div>
+                                <div className="text-lg">Rank #{topper.rank}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                  <p className="text-sm text-gray-600 dark:text-gray-300">
-                    {performer.achievement}
-                  </p>
                 </div>
               </div>
-            ))}
+              
+              {/* Slider Controls */}
+              <button 
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button 
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/30 text-white transition-colors"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+
+              {/* Dots */}
+              <div className="flex justify-center mt-4 space-x-2">
+                {toppers.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentSlide(index)}
+                    className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                      currentSlide === index 
+                        ? 'bg-indigo-600 dark:bg-indigo-400' 
+                        : 'bg-gray-300 dark:bg-gray-600'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Toppers Table */}
+            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden mb-8">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="bg-gray-50 dark:bg-gray-700">
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Student Name</th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">Percentage</th>
+                      <th className="px-6 py-3 text-left text-sm font-semibold text-gray-900 dark:text-white">School</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                    {sscToppers.map((student, index) => (
+                      <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors">
+                        <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">{student.name}</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-indigo-600 dark:text-indigo-400">{student.percentage}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600 dark:text-gray-300">{student.school}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Overall Performance */}
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+                Overall Class Performance
+              </h3>
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Performance Stats */}
+                <div className="space-y-4">
+                  <div className="bg-white dark:bg-gray-800 rounded-lg p-4">
+                    <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">Overall Class Result</div>
+                    <div className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">100%</div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    {classPerformance.map((range, index) => (
+                      <div key={index} className="bg-white dark:bg-gray-800 rounded-lg p-4">
+                        <div className="text-sm text-gray-600 dark:text-gray-400 mb-1">{range.range}</div>
+                        <div className="text-xl font-semibold text-gray-900 dark:text-white">
+                          {range.count} Students
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                {/* Performance Chart */}
+                <div className="bg-white dark:bg-gray-800 rounded-lg p-6">
+                  <div className="space-y-4">
+                    {classPerformance.map((range, index) => (
+                      <div key={index}>
+                        <div className="flex justify-between text-sm mb-1">
+                          <span className="text-gray-600 dark:text-gray-400">{range.range}</span>
+                          <span className="text-gray-900 dark:text-white font-medium">{range.count} students</span>
+                        </div>
+                        <div className="h-2 bg-gray-200 dark:bg-gray-700 rounded-full">
+                          <div 
+                            className="h-2 bg-indigo-600 dark:bg-indigo-400 rounded-full"
+                            style={{ width: `${(range.count / 63) * 100}%` }}
+                          ></div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
