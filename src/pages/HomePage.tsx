@@ -21,22 +21,29 @@ const HomePage: React.FC = () => {
       name: "Ms. Sara Jadhav",
       percentage: "98.20%",
       school: "Vidyadeep",
-      rank: 1,
+      rank: "1st in Vasai-Virar",
       image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg"
     },
     {
       name: "Mst. Madhuranjan Mishra",
       percentage: "96.40%",
       school: "B.V.Thakur",
-      rank: 2,
+      rank: "1st in B.V. Thakur",
       image: "https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg"
     },
     {
       name: "Ms. Aarya Kherade",
       percentage: "95.40%",
       school: "St. Peter's",
-      rank: 3,
+      rank: "3rd Rank in St. Peter's",
       image: "https://images.pexels.com/photos/3785083/pexels-photo-3785083.jpeg"
+    },
+    {
+      name: "Mst. Arbaz Mohammad",
+      percentage: "91.20%",
+      school: "St. Mary",
+      rank: "1st in St. Mary",
+      image: "https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg"
     }
   ];
 
