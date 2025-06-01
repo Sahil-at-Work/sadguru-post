@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import FilterSidebar from '../components/FilterSidebar';
-import PostGrid from '../components/PostGrid';
-import TagCloud from '../components/TagCloud';
 import PostCard from '../components/PostCard';
+import TagCloud from '../components/TagCloud';
 import { usePosts } from '../context/PostsContext';
-import { Menu, GraduationCap, Users, Award, Target, BookOpen, Phone, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Menu, GraduationCap, Users, Award, Target, BookOpen, Phone, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const HomePage: React.FC = () => {
   const { posts } = usePosts();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Get top 3 posts by likes
   const topPosts = [...posts]
     .sort((a, b) => b.likes - a.likes)
     .slice(0, 3);
@@ -65,6 +63,51 @@ const HomePage: React.FC = () => {
     { range: "60% to 70%", count: 15 }
   ];
 
+  const testimonials = [
+    {
+      id: 1,
+      name: "Aarav Patel",
+      role: "Class 10 Student",
+      image: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg",
+      quote: "The teaching methods at Sadguru Science Classes are exceptional. The concepts are explained in a way that makes even complex topics easy to understand. I've seen a remarkable improvement in my grades.",
+      rating: 5
+    },
+    {
+      id: 2,
+      name: "Dr. Priya Sharma",
+      role: "Parent of Two Students",
+      image: "https://images.pexels.com/photos/3785424/pexels-photo-3785424.jpeg",
+      quote: "Both my children have benefited immensely from Sadguru Science Classes. The personalized attention and regular feedback have helped them build a strong foundation in science subjects.",
+      rating: 5
+    },
+    {
+      id: 3,
+      name: "Rajesh Kumar",
+      role: "Former Student, Now at IIT",
+      image: "https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg",
+      quote: "The guidance I received at Sadguru Science Classes was instrumental in my JEE success. The faculty's dedication and comprehensive study material made all the difference.",
+      rating: 5
+    },
+    {
+      id: 4,
+      name: "Meera Desai",
+      role: "Class 12 Student",
+      image: "https://images.pexels.com/photos/3771118/pexels-photo-3771118.jpeg",
+      quote: "The practice tests and doubt-solving sessions have greatly boosted my confidence. The teachers are always available to help and ensure every student understands the concepts thoroughly.",
+      rating: 5
+    },
+    {
+      id: 5,
+      name: "Suresh Iyer",
+      role: "Parent & Education Professional",
+      image: "https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg",
+      quote: "What sets Sadguru Science Classes apart is their holistic approach to education. They focus not just on academic excellence but also on building problem-solving skills and conceptual clarity.",
+      rating: 5
+    }
+  ];
+
+  const [currentTestimonial, setCurrentTestimonial] = useState(0);
+
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === toppers.length - 1 ? 0 : prev + 1));
   };
@@ -73,10 +116,18 @@ const HomePage: React.FC = () => {
     setCurrentSlide((prev) => (prev === 0 ? toppers.length - 1 : prev - 1));
   };
 
+  const nextTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
+
+  const prevTestimonial = () => {
+    setCurrentTestimonial((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       {/* Hero Section */}
-      <div className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-24">
+      <div className="relative bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-32 min-h-[600px] flex items-center">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
@@ -363,6 +414,91 @@ const HomePage: React.FC = () => {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section */}
+      <div className="py-24 bg-white dark:bg-gray-800">
+        <div className="container mx-auto px-4">
+          <div className="max-w-3xl mx-auto text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+              What Our Students & Parents Say
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Don't just take our word for it - hear from our community about their experience with Sadguru Science Classes
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto relative">
+            <div className="overflow-hidden">
+              <div 
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{ transform: `translateX(-${currentTestimonial * 100}%)` }}
+              >
+                {testimonials.map((testimonial) => (
+                  <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
+                    <div className="bg-gray-50 dark:bg-gray-700 rounded-2xl p-8 md:p-12">
+                      <div className="flex flex-col items-center text-center">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.name}
+                          className="w-20 h-20 rounded-full object-cover mb-6"
+                        />
+                        <div className="flex items-center mb-4">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="h-5 w-5 text-amber-400 fill-current" />
+                          ))}
+                        </div>
+                        <blockquote className="text-xl text-gray-900 dark:text-white mb-6 italic">
+                          "{testimonial.quote}"
+                        </blockquote>
+                        <div>
+                          <div className="font-semibold text-gray-900 dark:text-white">
+                            {testimonial.name}
+                          </div>
+                          <div className="text-gray-600 dark:text-gray-400">
+                            {testimonial.role}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Buttons */}
+            <button 
+              onClick={prevTestimonial}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 p-2 rounded-full bg-white dark:bg-gray-600 shadow-lg text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-500 transition-colors"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+            <button 
+              onClick={nextTestimonial}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 p-2 rounded-full bg-white dark:bg-gray-600 shadow-lg text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-500 transition-colors"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+
+            {/* Dots */}
+            <div className="flex justify-center mt-8 space-x-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentTestimonial(index)}
+                  className={`w-2.5 h-2.5 rounded-full transition-colors ${
+                    currentTestimonial === index 
+                      ? 'bg-indigo-600 dark:bg-indigo-400' 
+                      : 'bg-gray-300 dark:bg-gray-600'
+                  }`}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                />
+              ))}
             </div>
           </div>
         </div>
