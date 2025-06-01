@@ -63,48 +63,49 @@ const HomePage: React.FC = () => {
     { range: "60% to 70%", count: 15 }
   ];
 
-  const testimonials = [
-    {
-      id: 1,
-      name: "Aarav Patel",
-      role: "Class 10 Student",
-      image: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg",
-      quote: "The teaching methods at Sadguru Science Classes are exceptional. The concepts are explained in a way that makes even complex topics easy to understand. I've seen a remarkable improvement in my grades.",
-      rating: 5
-    },
-    {
-      id: 2,
-      name: "Dr. Priya Sharma",
-      role: "Parent of Two Students",
-      image: "https://images.pexels.com/photos/3785424/pexels-photo-3785424.jpeg",
-      quote: "Both my children have benefited immensely from Sadguru Science Classes. The personalized attention and regular feedback have helped them build a strong foundation in science subjects.",
-      rating: 5
-    },
-    {
-      id: 3,
-      name: "Rajesh Kumar",
-      role: "Former Student, Now at IIT",
-      image: "https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg",
-      quote: "The guidance I received at Sadguru Science Classes was instrumental in my JEE success. The faculty's dedication and comprehensive study material made all the difference.",
-      rating: 5
-    },
-    {
-      id: 4,
-      name: "Meera Desai",
-      role: "Class 12 Student",
-      image: "https://images.pexels.com/photos/3771118/pexels-photo-3771118.jpeg",
-      quote: "The practice tests and doubt-solving sessions have greatly boosted my confidence. The teachers are always available to help and ensure every student understands the concepts thoroughly.",
-      rating: 5
-    },
-    {
-      id: 5,
-      name: "Suresh Iyer",
-      role: "Parent & Education Professional",
-      image: "https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg",
-      quote: "What sets Sadguru Science Classes apart is their holistic approach to education. They focus not just on academic excellence but also on building problem-solving skills and conceptual clarity.",
-      rating: 5
-    }
-  ];
+const testimonials = [
+  {
+    id: 1,
+    name: "Sahil Sawant",
+    role: "Jr. Researcher at IUCAA",
+    image: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg",
+    quote: "The foundational science education I received at Sadguru Science Classes was truly exceptional. The way complex topics were broken down and explained made all the difference, setting me on a clear path towards my research career at IUCAA.",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "Bhavya Shah",
+    role: "Cloud Expert at Nutanix",
+    image: "https://images.pexels.com/photos/3785424/pexels-photo-3785424.jpeg",
+    quote: "Sadguru Science Classes provided an incredibly strong academic base that fostered my problem-solving skills, which are crucial in my current role as a Cloud Expert. Their personalized approach ensured I grasped every concept thoroughly.",
+    rating: 5
+  },
+  {
+    id: 3,
+    name: "Anas Ansari",
+    role: "AI/ML Engineer at Avaulti",
+    image: "https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg",
+    quote: "The rigorous training and comprehensive understanding of scientific principles I gained at Sadguru Science Classes were absolutely instrumental. This strong background was key to my success in pursuing AI/ML engineering.",
+    rating: 5
+  },
+  {
+    id: 4,
+    name: "Nirbhay Thoke",
+    role: "IIT-Guwahati Alumnus",
+    image: "https://images.pexels.com/photos/3771118/pexels-photo-3771118.jpeg",
+    quote: "The focused preparation and excellent doubt-solving sessions at Sadguru Science Classes were pivotal in my journey to IIT-Guwahati. The faculty's unwavering support and commitment to conceptual clarity truly made a difference.",
+    rating: 5
+  },
+  {
+    id: 5,
+    name: "Tayyab Shaikh",
+    role: "Product Manager at Kirloskar Engines",
+    image: "https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg",
+    quote: "Sadguru Science Classes goes beyond rote learning; they instill a deep understanding of scientific concepts and critical thinking. This holistic approach has been invaluable in my career as a Product Manager, where strong analytical skills are paramount.",
+    rating: 5
+  }
+];
+
 
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
