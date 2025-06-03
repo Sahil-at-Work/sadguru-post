@@ -68,7 +68,7 @@ const testimonials = [
     id: 1,
     name: "Sahil Sawant",
     role: "Jr. Researcher at IUCAA",
-    image: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg",
+    image: "https://media.licdn.com/dms/image/v2/D5603AQHpBsS-ZNbV4Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1694284857656?e=2147483647&v=beta&t=MH_UgLELHEGbp033EZfy_fhFv8UEwVyc1wZXQV0UoCE",
     quote: "The foundational science education I received at Sadguru Science Classes was truly exceptional. The way complex topics were broken down and explained made all the difference, setting me on a clear path towards my research career at IUCAA.",
     rating: 5
   },
