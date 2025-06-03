@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { Post, FilterState, ClassLevel, Subject } from '../types';
-import { posts as initialPosts, getAllClassLevels, getAllSubjects, getAllTopics } from '../data/posts/index';
+import { supabase } from '../lib/supabase';
 
 interface PostsContextType {
   posts: Post[];
@@ -8,7 +8,8 @@ interface PostsContextType {
   filters: FilterState;
   updateFilters: (newFilters: Partial<FilterState>) => void;
   resetFilters: () => void;
-  bookmarkPost: (postId: string) => void;
+  bookmarkPost: (postId: string) => Promise<void>;
+  likePost: (postId: string) => Promise<void>;
   getPostById: (id: string) => Post | undefined;
   getRelatedPosts: (post: Post) => Post[];
   availableFilters: {
@@ -28,43 +29,89 @@ const defaultFilters: FilterState = {
 const PostsContext = createContext<PostsContextType | undefined>(undefined);
 
 export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [posts] = useState<Post[]>(initialPosts);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [filters, setFilters] = useState<FilterState>(defaultFilters);
-  const [filteredPosts, setFilteredPosts] = useState<Post[]>(posts);
-  const [availableFilters] = useState({
-    classLevels: getAllClassLevels(),
-    subjects: getAllSubjects(),
-    topics: getAllTopics()
+  const [filteredPosts, setFilteredPosts] = useState<Post[]>([]);
+  const [availableFilters, setAvailableFilters] = useState({
+    classLevels: [] as ClassLevel[],
+    subjects: [] as Subject[],
+    topics: [] as string[]
   });
+
+  // Fetch posts from Supabase
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('posts')
+        .select('*, likes_count, bookmarks(user_id)');
+
+      if (error) throw error;
+
+      const formattedPosts = data.map(post => ({
+        ...post,
+        bookmarked: post.bookmarks?.length > 0,
+        likes: post.likes_count,
+        images: post.images || [], // Ensure images is always an array
+        topics: post.topics?.filter(topic => typeof topic === 'string') || [] // Filter out non-string topics
+      }));
+
+      setPosts(formattedPosts);
+      updateAvailableFilters(formattedPosts);
+    } catch (error) {
+      console.error('Error fetching posts:', error);
+    }
+  };
+
+  const updateAvailableFilters = (posts: Post[]) => {
+    const subjects = new Set<Subject>();
+    const topics = new Set<string>();
+    const classLevels = new Set<ClassLevel>();
+
+    posts.forEach(post => {
+      subjects.add(post.subject);
+      post.topics.forEach(topic => {
+        if (typeof topic === 'string') {
+          topics.add(topic);
+        }
+      });
+      classLevels.add(post.class);
+    });
+
+    setAvailableFilters({
+      subjects: Array.from(subjects).sort(),
+      topics: Array.from(topics).sort(),
+      classLevels: Array.from(classLevels).sort()
+    });
+  };
 
   // Apply filters whenever posts or filters change
   useEffect(() => {
     let result = [...posts];
     
-    // Filter by class levels
     if (filters.classLevels.length > 0) {
       result = result.filter(post => filters.classLevels.includes(post.class));
     }
     
-    // Filter by subjects
     if (filters.subjects.length > 0) {
       result = result.filter(post => filters.subjects.includes(post.subject));
     }
     
-    // Filter by topics
     if (filters.topics.length > 0) {
       result = result.filter(post => 
         post.topics.some(topic => filters.topics.includes(topic))
       );
     }
     
-    // Filter by search query
     if (filters.searchQuery) {
       const query = filters.searchQuery.toLowerCase();
       result = result.filter(post => 
         post.title.toLowerCase().includes(query) || 
-        post.caption.toLowerCase().includes(query) ||
-        post.topics.some(topic => topic.toLowerCase().includes(query))
+        (post.caption && post.caption.toLowerCase().includes(query)) || // Handle potentially null caption
+        post.topics.some(topic => typeof topic === 'string' && topic.toLowerCase().includes(query)) // Check if topic is string
       );
     }
     
@@ -79,16 +126,48 @@ export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     setFilters(defaultFilters);
   };
 
-  const bookmarkPost = (postId: string) => {
-    const updatedPosts = posts.map(post => 
-      post.id === postId ? { ...post, bookmarked: !post.bookmarked } : post
-    );
-    // Update both posts and filtered posts to maintain consistency
-    setFilteredPosts(prevFiltered => 
-      prevFiltered.map(post => 
-        post.id === postId ? { ...post, bookmarked: !post.bookmarked } : post
-      )
-    );
+  const bookmarkPost = async (postId: string) => {
+    try {
+      const post = posts.find(p => p.id === postId);
+      if (!post) return;
+
+      if (post.bookmarked) {
+        await supabase
+          .from('bookmarks')
+          .delete()
+          .match({ post_id: postId });
+      } else {
+        await supabase
+          .from('bookmarks')
+          .insert({ post_id: postId });
+      }
+
+      setPosts(prevPosts => 
+        prevPosts.map(p => 
+          p.id === postId ? { ...p, bookmarked: !p.bookmarked } : p
+        )
+      );
+    } catch (error) {
+      console.error('Error toggling bookmark:', error);
+    }
+  };
+
+  const likePost = async (postId: string) => {
+    try {
+      const { data, error } = await supabase.rpc('increment_likes', {
+        post_id: postId
+      });
+
+      if (error) throw error;
+
+      setPosts(prevPosts => 
+        prevPosts.map(p => 
+          p.id === postId ? { ...p, likes: data.likes_count } : p
+        )
+      );
+    } catch (error) {
+      console.error('Error liking post:', error);
+    }
   };
 
   const getPostById = (id: string) => {
@@ -114,6 +193,7 @@ export const PostsProvider: React.FC<{ children: React.ReactNode }> = ({ childre
         updateFilters, 
         resetFilters, 
         bookmarkPost,
+        likePost,
         getPostById,
         getRelatedPosts,
         availableFilters
