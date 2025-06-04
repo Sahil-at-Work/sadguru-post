@@ -20,28 +20,28 @@ const HomePage: React.FC = () => {
       percentage: "98.20%",
       school: "Vidyadeep",
       rank: "1st in Vasai-Virar",
-      image: "https://media.licdn.com/dms/image/v2/D4D22AQG5wgJgabbt0g/feedshare-shrink_800/feedshare-shrink_800/0/1729707644898?e=1752105600&v=beta&t=E99Y7arG9Go3A15J2QSn717OA6CkF__EAte7bwuAtGA"
+      image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg"
     },
     {
       name: "Mst. Madhuranjan Mishra",
       percentage: "96.40%",
       school: "B.V.Thakur",
       rank: "1st in B.V. Thakur",
-      image: "https://media.licdn.com/dms/image/v2/D4D35AQGnGvj1itdvTg/profile-framedphoto-shrink_800_800/B4DZbo8M6PIAAo-/0/1747664818243?e=1749585600&v=beta&t=EaL7v7FBoRUWIK-Z-8eNE1036DOwoxvzkCukEPVDoiE"
+      image: "https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg"
     },
     {
       name: "Ms. Aarya Kherade",
       percentage: "95.40%",
       school: "St. Peter's",
       rank: "3rd in St. Peter's",
-      image: "https://media.licdn.com/dms/image/v2/D4D22AQG1DtRKiohVXw/feedshare-shrink_800/B4DZQ8uhvZHcAg-/0/1736185619900?e=1752105600&v=beta&t=8wku0HMPqCMrxFKPwtyR3ogXoHce4d-3ZGKhLc40Nso"
+      image: "https://images.pexels.com/photos/3785083/pexels-photo-3785083.jpeg"
     },
     {
       name: "Mst. Arbaz Mohammad",
       percentage: "91.20%",
       school: "St. Mary",
       rank: "1st in St. Mary",
-      image: "https://media.licdn.com/dms/image/v2/D5603AQGuUiI09Lprxw/profile-displayphoto-shrink_200_200/B56ZX.0lhqHEAc-/0/1743736954462?e=2147483647&v=beta&t=v3oqej5hfNKxqeRz0F66Ii8KdDQhWffpOFwTNAzE5NA"
+      image: "https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg"
     }
   ];
 
@@ -68,7 +68,7 @@ const testimonials = [
     id: 1,
     name: "Sahil Sawant",
     role: "Jr. Researcher at IUCAA",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQHpBsS-ZNbV4Q/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1694284857656?e=2147483647&v=beta&t=MH_UgLELHEGbp033EZfy_fhFv8UEwVyc1wZXQV0UoCE",
+    image: "https://images.pexels.com/photos/3777943/pexels-photo-3777943.jpeg",
     quote: "The foundational science education I received at Sadguru Science Classes was truly exceptional. The way complex topics were broken down and explained made all the difference, setting me on a clear path towards my research career at IUCAA.",
     rating: 5
   },
@@ -76,7 +76,7 @@ const testimonials = [
     id: 2,
     name: "Bhavya Shah",
     role: "Cloud Expert at Nutanix",
-    image: "https://media.licdn.com/dms/image/v2/D4D22AQG1DtRKiohVXw/feedshare-shrink_800/B4DZQ8uhvZHcAg-/0/1736185619900?e=1752105600&v=beta&t=8wku0HMPqCMrxFKPwtyR3ogXoHce4d-3ZGKhLc40Nso",
+    image: "https://images.pexels.com/photos/3785424/pexels-photo-3785424.jpeg",
     quote: "Sadguru Science Classes provided an incredibly strong academic base that fostered my problem-solving skills, which are crucial in my current role as a Cloud Expert. Their personalized approach ensured I grasped every concept thoroughly.",
     rating: 5
   },
@@ -84,7 +84,7 @@ const testimonials = [
     id: 3,
     name: "Anas Ansari",
     role: "AI/ML Engineer at Avaulti",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQHu0VdB3zGusg/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1710575216646?e=2147483647&v=beta&t=gWgI9E9Gk2rnGuuECTjXqRJnZtvp_NcEz_xby6TpE1k",
+    image: "https://images.pexels.com/photos/8197534/pexels-photo-8197534.jpeg",
     quote: "The rigorous training and comprehensive understanding of scientific principles I gained at Sadguru Science Classes were absolutely instrumental. This strong background was key to my success in pursuing AI/ML engineering.",
     rating: 5
   },
@@ -92,7 +92,7 @@ const testimonials = [
     id: 4,
     name: "Nirbhay Thoke",
     role: "IIT-Guwahati Alumnus",
-    image: "https://media.licdn.com/dms/image/v2/C5603AQHocLtkseSPIQ/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1626350435652?e=2147483647&v=beta&t=l-jnr_EGzLxoitkyi6fUnuCJxfy0p4sW4gjoYN5vlMc",
+    image: "https://images.pexels.com/photos/3771118/pexels-photo-3771118.jpeg",
     quote: "The focused preparation and excellent doubt-solving sessions at Sadguru Science Classes were pivotal in my journey to IIT-Guwahati. The faculty's unwavering support and commitment to conceptual clarity truly made a difference.",
     rating: 5
   },
@@ -100,7 +100,7 @@ const testimonials = [
     id: 5,
     name: "Tayyab Shaikh",
     role: "Product Manager at Kirloskar Engines",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQGuUiI09Lprxw/profile-displayphoto-shrink_200_200/B56ZX.0lhqHEAc-/0/1743736954462?e=2147483647&v=beta&t=v3oqej5hfNKxqeRz0F66Ii8KdDQhWffpOFwTNAzE5NA",
+    image: "https://images.pexels.com/photos/5212324/pexels-photo-5212324.jpeg",
     quote: "Sadguru Science Classes goes beyond rote learning; they instill a deep understanding of scientific concepts and critical thinking. This holistic approach has been invaluable in my career as a Product Manager, where strong analytical skills are paramount.",
     rating: 5
   }
