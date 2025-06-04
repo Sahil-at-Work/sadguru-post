@@ -2,52 +2,40 @@ import { Quiz, ClassLevel, Subject } from '../../types';
 
 export const quizzes: Quiz[] = [
   {
-    id: 'math-101',
+    id: 'math-11',
     title: 'Vectors',
     subject: 'Mathematics',
-    description: 'Test your understanding of basic mathematical concepts including algebra, geometry, and trigonometry.',
+    description: '',
     externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLScPZBBO-55t-_lZueJ9n0b2-eYtEwZgDaRUj63rUQ318qesMw/viewform?usp=header',
     imageUrl: 'https://images.pexels.com/photos/3729557/pexels-photo-3729557.jpeg',
-    duration: 60,
-    questionCount: 25,
-    classLevel: '10th',
-    topics: ['Algebra', 'Geometry', 'Trigonometry']
+    duration: 30,
+    questionCount: 12,
+    classLevel: '12th',
+    topics: ['Mathematics', 'Vectors']
   },
   {
-    id: 'physics-101',
-    title: 'Physics Concepts',
+    id: 'physics-11',
+    title: 'Units and Measurements',
     subject: 'Physics',
-    description: 'Challenge yourself with questions on mechanics, waves, and energy conservation.',
+    description: '',
     externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfJ8LhEIzUKKVYTqTmAsfEHTvmf4XJp4nhXvCKj0_-fI2ciXQ/viewform?usp=header',
     imageUrl: 'https://images.pexels.com/photos/2280571/pexels-photo-2280571.jpeg',
-    duration: 45,
-    questionCount: 20,
+    duration: 30,
+    questionCount: 10,
     classLevel: '11th',
-    topics: ['Mechanics', 'Waves', 'Energy']
+    topics: ['Physics', 'Units and Measurements']
   },
   {
-    id: 'chemistry-101',
-    title: 'Chemistry Fundamentals',
-    subject: 'Chemistry',
-    description: 'Explore chemical bonding, periodic table, and molecular structures through interactive questions.',
-    externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfJ8LhEIzUKKVYTqTmAsfEHTvmf4XJp4nhXvCKj0_-fI2ciXQ/viewform?usp=header',
+    id: 'chemistry-dpp',
+    title: 'Chemistry-DPP (C.11)',
+    subject: 'Physics',
+    description: '',
+    externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSeI1xhuM5WB6bOXq2yuIC7mgIOdQTNORXmKoLPh3nYdt3m2tw/viewform?usp=dialog',
     imageUrl: 'https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg',
-    duration: 30,
-    questionCount: 15,
-    classLevel: '9th',
-    topics: ['Chemical Bonding', 'Periodic Table', 'Molecular Structure']
-  },
-  {
-    id: 'chemistry-101',
-    title: 'Chemistry Fundamentals',
-    subject: 'Chemistry',
-    description: 'Explore chemical bonding, periodic table, and molecular structures through interactive questions.',
-    externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfJ8LhEIzUKKVYTqTmAsfEHTvmf4XJp4nhXvCKj0_-fI2ciXQ/viewform?usp=header',
-    imageUrl: 'https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg',
-    duration: 30,
-    questionCount: 15,
-    classLevel: '9th',
-    topics: ['Chemical Bonding', 'Periodic Table', 'Molecular Structure']
+    duration: 20,
+    questionCount: 10,
+    classLevel: '11th',
+    topics: ['Chemistry', 'Some Basic Concepts of Chemistry', 'DPP']
   }
 ];
 
