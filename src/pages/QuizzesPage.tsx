@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GraduationCap, Clock, Award, ExternalLink, Filter, X, ChevronDown, ChevronUp } from 'lucide-react';
-import { quizzes, getAllSubjects, getAllClassLevels, getAllTopics } from '../data/quiz';
 import { ClassLevel, Subject, Quiz } from '../types';
+import { supabase } from '../lib/supabase';
 
 const QuizzesPage: React.FC = () => {
   const [selectedSubjects, setSelectedSubjects] = useState<Subject[]>([]);
@@ -9,19 +9,55 @@ const QuizzesPage: React.FC = () => {
   const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
+  const [quizzes, setQuizzes] = useState<Quiz[]>([]);
+  const [subjects, setSubjects] = useState<Subject[]>([]);
+  const [classLevels, setClassLevels] = useState<ClassLevel[]>([]);
+  const [topics, setTopics] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Only get subjects and topics that are actually used in quizzes
-  const subjects = getAllSubjects();
-  const classLevels = getAllClassLevels();
-  const topics = getAllTopics();
+  useEffect(() => {
+    fetchQuizzes();
+  }, []);
+
+  const fetchQuizzes = async () => {
+    try {
+      setIsLoading(true);
+      const { data, error } = await supabase
+        .from('quizzes')
+        .select('*');
+
+      if (error) throw error;
+
+      setQuizzes(data);
+
+      // Extract unique subjects, class levels, and topics
+      const uniqueSubjects = new Set<Subject>();
+      const uniqueClassLevels = new Set<ClassLevel>();
+      const uniqueTopics = new Set<string>();
+
+      data.forEach(quiz => {
+        uniqueSubjects.add(quiz.subject as Subject);
+        uniqueClassLevels.add(quiz.class_level as ClassLevel);
+        quiz.topics?.forEach(topic => uniqueTopics.add(topic));
+      });
+
+      setSubjects(Array.from(uniqueSubjects));
+      setClassLevels(Array.from(uniqueClassLevels));
+      setTopics(Array.from(uniqueTopics));
+    } catch (error) {
+      console.error('Error fetching quizzes:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const filteredQuizzes = quizzes.filter(quiz => {
-    const matchesSubject = selectedSubjects.length === 0 || selectedSubjects.includes(quiz.subject);
-    const matchesClass = selectedClasses.length === 0 || selectedClasses.includes(quiz.classLevel);
-    const matchesTopics = selectedTopics.length === 0 || quiz.topics.some(topic => selectedTopics.includes(topic));
+    const matchesSubject = selectedSubjects.length === 0 || selectedSubjects.includes(quiz.subject as Subject);
+    const matchesClass = selectedClasses.length === 0 || selectedClasses.includes(quiz.class_level as ClassLevel);
+    const matchesTopics = selectedTopics.length === 0 || quiz.topics?.some(topic => selectedTopics.includes(topic));
     const matchesSearch = !searchQuery || 
       quiz.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      quiz.description.toLowerCase().includes(searchQuery.toLowerCase());
+      (quiz.description || '').toLowerCase().includes(searchQuery.toLowerCase());
 
     return matchesSubject && matchesClass && matchesTopics && matchesSearch;
   });
@@ -34,6 +70,35 @@ const QuizzesPage: React.FC = () => {
   };
 
   const activeFilterCount = selectedSubjects.length + selectedClasses.length + selectedTopics.length + (searchQuery ? 1 : 0);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
+        <div className="container mx-auto px-4 py-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="animate-pulse space-y-8">
+              <div className="text-center">
+                <div className="h-16 w-16 bg-gray-200 dark:bg-gray-700 rounded-full mx-auto mb-4"></div>
+                <div className="h-8 w-64 bg-gray-200 dark:bg-gray-700 rounded mx-auto mb-4"></div>
+                <div className="h-4 w-96 bg-gray-200 dark:bg-gray-700 rounded mx-auto"></div>
+              </div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-2">
+                {[1, 2, 3, 4].map(i => (
+                  <div key={i} className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
+                    <div className="h-48 bg-gray-200 dark:bg-gray-700"></div>
+                    <div className="p-6 space-y-4">
+                      <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded w-3/4"></div>
+                      <div className="h-4 bg-gray-200 dark:bg-gray-700 rounded w-1/2"></div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 pt-20">
@@ -227,14 +292,14 @@ const QuizzesPage: React.FC = () => {
             {filteredQuizzes.map(quiz => (
               <a
                 key={quiz.id}
-                href={quiz.externalUrl}
+                href={quiz.external_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300"
               >
                 <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
                   <img 
-                    src={quiz.imageUrl} 
+                    src={quiz.image_url} 
                     alt={quiz.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
@@ -246,7 +311,7 @@ const QuizzesPage: React.FC = () => {
                           {quiz.subject}
                         </span>
                         <span className="px-3 py-1 bg-white/90 dark:bg-gray-900/90 text-gray-900 dark:text-white text-sm font-medium rounded-full">
-                          {quiz.classLevel}
+                          {quiz.class_level}
                         </span>
                       </div>
                       <ExternalLink className="h-5 w-5 text-white" />
@@ -264,7 +329,7 @@ const QuizzesPage: React.FC = () => {
                   </p>
 
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {quiz.topics.map(topic => (
+                    {quiz.topics?.map(topic => (
                       <span
                         key={topic}
                         className="px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-400 text-xs rounded-full"
@@ -278,7 +343,7 @@ const QuizzesPage: React.FC = () => {
                     <div className="flex items-center space-x-4 text-gray-600 dark:text-gray-400">
                       <div className="flex items-center">
                         <Award className="h-4 w-4 mr-1" />
-                        <span>{quiz.questionCount} questions</span>
+                        <span>{quiz.question_count} questions</span>
                       </div>
                       <div className="flex items-center">
                         <Clock className="h-4 w-4 mr-1" />
