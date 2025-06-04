@@ -36,6 +36,18 @@ export const quizzes: Quiz[] = [
     questionCount: 15,
     classLevel: '9th',
     topics: ['Chemical Bonding', 'Periodic Table', 'Molecular Structure']
+  },
+  {
+    id: 'chemistry-101',
+    title: 'Chemistry Fundamentals',
+    subject: 'Chemistry',
+    description: 'Explore chemical bonding, periodic table, and molecular structures through interactive questions.',
+    externalUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSfJ8LhEIzUKKVYTqTmAsfEHTvmf4XJp4nhXvCKj0_-fI2ciXQ/viewform?usp=header',
+    imageUrl: 'https://images.pexels.com/photos/2280547/pexels-photo-2280547.jpeg',
+    duration: 30,
+    questionCount: 15,
+    classLevel: '9th',
+    topics: ['Chemical Bonding', 'Periodic Table', 'Molecular Structure']
   }
 ];
 
