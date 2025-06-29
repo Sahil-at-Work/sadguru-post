@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bookmark, BookmarkCheck, Heart, Share2, ChevronRight, ChevronLeft } from 'lucide-react';
 import { usePosts } from '../context/PostsContext';
 import PostCard from '../components/PostCard';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const PostDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -249,11 +250,14 @@ const PostDetailPage: React.FC = () => {
           </div>
         )}
         
-        {/* Post Content */}
+        {/* Post Content with Markdown Support */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8">
-          <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
-            {post.caption}
-          </p>
+          <div className="mb-6">
+            <MarkdownRenderer 
+              content={post.caption} 
+              className="text-lg leading-relaxed"
+            />
+          </div>
           
           {/* Action Buttons */}
           <div className="flex justify-center space-x-4 pt-6 border-t border-gray-100 dark:border-gray-700">

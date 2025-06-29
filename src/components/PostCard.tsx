@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Bookmark, BookmarkCheck, Heart, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
 import { Post } from '../types';
 import { usePosts } from '../context/PostsContext';
+import MarkdownRenderer from './MarkdownRenderer';
 
 interface PostCardProps {
   post: Post;
@@ -35,6 +36,24 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
   };
 
   const hasImages = post.images && post.images.length > 0;
+
+  // Truncate markdown content for preview
+  const truncateMarkdown = (content: string, maxLength: number = 150) => {
+    // Remove markdown syntax for preview
+    const plainText = content
+      .replace(/#{1,6}\s+/g, '') // Remove headers
+      .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold
+      .replace(/\*(.*?)\*/g, '$1') // Remove italic
+      .replace(/`(.*?)`/g, '$1') // Remove inline code
+      .replace(/\[(.*?)\]\(.*?\)/g, '$1') // Remove links
+      .replace(/>\s+/g, '') // Remove blockquotes
+      .replace(/\n+/g, ' ') // Replace newlines with spaces
+      .trim();
+    
+    return plainText.length > maxLength 
+      ? plainText.substring(0, maxLength) + '...'
+      : plainText;
+  };
 
   return (
     <Link 
@@ -130,7 +149,7 @@ const PostCard: React.FC<PostCardProps> = ({ post }) => {
         </h3>
         
         <p className="text-gray-600 dark:text-gray-300 text-sm mb-4 line-clamp-3 flex-grow">
-          {post.caption}
+          {truncateMarkdown(post.caption || '')}
         </p>
         
         <div className="flex flex-wrap gap-1 mb-3">
